@@ -50,7 +50,7 @@ class LinkedList:
             while last_node:
                 print(last_node.value)
                 last_node = last_node.next_node
-            print('---------------')
+            print('-------------------')
             
             #create pointer for previous node
             prev_node = None
@@ -74,7 +74,7 @@ class LinkedList:
             while last_node:
                 print(last_node.value)
                 last_node = last_node.next_node
-            print('---------------')
+            print('-------------------')
             return self
         
         
