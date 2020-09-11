@@ -27,7 +27,11 @@ class DoublyLinkedList:
         if self.length == 0:
             #set new node as head and tail
             self.head = new_node
-            self.tail = new_node 
+            self.tail = new_node
+            self.head.prev = self.tail
+            self.head.next = self.tail
+            self.tail.prev = self.head
+            self.tail.next = self.head 
         #check if one element in list
         elif self.length == 1:
             #set new node as tail
@@ -95,6 +99,12 @@ class RingBuffer:
         #checks if dlist is empty or none
         if not self.dlist or self.dlist.length == 0:
             return []
+        elif self.dlist.length == 1:
+            #create an empty list 
+            items = []
+            #add the head of the list's value to the array
+            items.append(self.dlist.head.value )
+            return items 
         else:
             #create an empty list 
             items = []
@@ -106,5 +116,5 @@ class RingBuffer:
             while current_node != self.dlist.head:
                 items.append(current_node.value)
                 current_node = current_node.next
-            #return the list
+            # return the list
             return items 
