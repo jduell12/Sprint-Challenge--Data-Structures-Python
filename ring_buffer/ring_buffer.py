@@ -73,11 +73,27 @@ class DoublyLinkedList:
             #return removed value 
             return removed 
         else:
-            old_head = self.head 
-            self.head = old_head.next 
+            old_head = self.head
+            self.head = old_head.next
             self.head.prev = self.tail 
             self.length -= 1
             return old_head.value 
+        
+    def add_to_head(self, value):
+        new_node = ListNode(value)
+        #saves old head as a variable
+        old_head = self.head 
+        #new node becomes the head
+        self.head = new_node
+        #set the head's next pointer to be the old head
+        self.head.next = old_head
+        #have the new head prev point to the tail
+        self.head.prev = self.tail
+        #set old head prev as self.head
+        old_head.prev = self.head 
+        #set tail's next pointer to be the new head
+        self.tail.next = self.head 
+        self.length += 1
         
 class RingBuffer:
     def __init__(self, capacity):
@@ -91,9 +107,20 @@ class RingBuffer:
             #create dlist initizlied with the item
             node = ListNode(item)
             self.dlist = DoublyLinkedList(node)
+            self.size += 1
         else:
-            #add the item to the tail of the list
-            self.dlist.add_to_tail(item)
+            #check if at capacity
+            if self.size == self.capacity:
+                #remove head 
+                self.dlist.remove_from_head()
+                self.size -= 1
+                #add the item to the head of the list
+                self.dlist.add_to_head(item)
+                self.size += 1
+            else:
+                #add the item to the tail of the list
+                self.dlist.add_to_tail(item)
+                self.size += 1
 
     def get(self):
         #checks if dlist is empty or none

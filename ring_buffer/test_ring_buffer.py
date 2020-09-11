@@ -13,22 +13,22 @@ class RingBufferTests(unittest.TestCase):
         self.buffer.append('a')
         self.assertEqual(self.buffer.get(), ['a'])
 
-    # def test_filling_buffer_to_capacity(self):
-    #     self.buffer.append('a')
-    #     self.buffer.append('b')
-    #     self.buffer.append('c')
-    #     self.buffer.append('d')
-    #     self.buffer.append('e')
-    #     self.assertEqual(self.buffer.get(), ['a', 'b', 'c', 'd', 'e'])
+    def test_filling_buffer_to_capacity(self):
+        self.buffer.append('a')
+        self.buffer.append('b')
+        self.buffer.append('c')
+        self.buffer.append('d')
+        self.buffer.append('e')
+        self.assertEqual(self.buffer.get(), ['a', 'b', 'c', 'd', 'e'])
 
-    # def test_adding_one_element_to_full_buffer(self):
-    #     self.buffer.append('a')
-    #     self.buffer.append('b')
-    #     self.buffer.append('c')
-    #     self.buffer.append('d')
-    #     self.buffer.append('e')
-    #     self.buffer.append('f')
-    #     self.assertEqual(self.buffer.get(), ['f', 'b', 'c', 'd', 'e'])
+    def test_adding_one_element_to_full_buffer(self):
+        self.buffer.append('a')
+        self.buffer.append('b')
+        self.buffer.append('c')
+        self.buffer.append('d')
+        self.buffer.append('e')
+        self.buffer.append('f')
+        self.assertEqual(self.buffer.get(), ['f', 'b', 'c', 'd', 'e'])
 
     # def test_adding_many_elements_to_full_buffer(self):
     #     self.buffer.append('a')
