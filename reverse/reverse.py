@@ -43,14 +43,21 @@ class LinkedList:
         if not self.head:
             return None
         else:
-            prevPointer = None
-            currentPointer = self.head
-            while currentPointer:
-                nextPointer = currentPointer.next_node
-                currentPointer.next_node = prevPointer
-                prevPointer = currentPointer
-                currentPointer = nextPointer
-            self.head = prevPointer
+            #create pointer for previous node
+            prev_node = None
+            #create pointer for current node
+            current_node = self.head
+            #iterate over list 
+            while current_node:
+                #set next pointer as the current node's next
+                next_node = current_node.next_node
+                #set the current's next node as the previous
+                current_node.next_node =  prev_node
+                #swaps the prev node with current node 
+                prev_node = current_node
+                current_node = next_node
+            #sets the head as the last prev node
+            self.head = prev_node
             return self
         
         
