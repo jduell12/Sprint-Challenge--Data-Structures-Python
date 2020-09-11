@@ -38,11 +38,20 @@ class LinkedList:
 
         return False
 
+    #runtime complexity: O(n)
     def reverse_list(self, node, prev): 
         #checks if list is empty:
         if not self.head:
             return None
         else:
+            #prints out list before reversing it
+            print('Before reverse')
+            last_node = self.head
+            while last_node:
+                print(last_node.value)
+                last_node = last_node.next_node
+            print('---------------')
+            
             #create pointer for previous node
             prev_node = None
             #create pointer for current node
@@ -58,6 +67,14 @@ class LinkedList:
                 current_node = next_node
             #sets the head as the last prev node
             self.head = prev_node
+            
+            #prints out list after reversing it
+            last_node = self.head
+            print('After reverse')
+            while last_node:
+                print(last_node.value)
+                last_node = last_node.next_node
+            print('---------------')
             return self
         
         
