@@ -51,6 +51,29 @@ class DoublyLinkedList:
             self.tail.next = self.head 
             #set the head's prev as the new tail
             self.head.prev = self.tail
+        #increase length of list
+        self.length += 1
+        
+    def remove_from_head(self):
+        #check if list is empty
+        if self.length == 0:
+            return None
+        #check if one element in list
+        elif self.length == 1:
+            #save value that's being removed
+            removed = self.head.value 
+            #set the head and tail to none 
+            self.head = None 
+            self.tail = None 
+            self.length -= 1 
+            #return removed value 
+            return removed 
+        else:
+            old_head = self.head 
+            self.head = old_head.next 
+            self.head.prev = self.tail 
+            self.length -= 1
+            return old_head.value 
         
 class RingBuffer:
     def __init__(self, capacity):
@@ -59,7 +82,29 @@ class RingBuffer:
         self.dlist = None 
 
     def append(self, item):
-        pass
+        #check if dlist is empty 
+        if not self.dlist:
+            #create dlist initizlied with the item
+            node = ListNode(item)
+            self.dlist = DoublyLinkedList(node)
+        else:
+            #add the item to the tail of the list
+            self.dlist.add_to_tail(item)
 
     def get(self):
-        pass
+        #checks if dlist is empty or none
+        if not self.dlist or self.dlist.length == 0:
+            return []
+        else:
+            #create an empty list 
+            items = []
+            #add the head of the list's value to the array
+            items.append(self.dlist.head.value )
+            #set up current node
+            current_node = self.dlist.head.next
+            #loop through the dlist until the current_node is the head again 
+            while current_node != self.dlist.head:
+                items.append(current_node.value)
+                current_node = current_node.next
+            #return the list
+            return items 
